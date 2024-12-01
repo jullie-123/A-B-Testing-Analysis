@@ -13,14 +13,45 @@ In the initial data preprosseing we perform the following tasks:
 - Ensure data types and values are appropriate for analysis.
 
 ## Exploratory Data Analysis
-EDA involves Understand the distribution of ad views and purchases.
+EDA involves Understanding the distribution of ad views and purchases.
+
 Compare behaviors between control and test groups.
+
 A/B Testing:
+
 Define null and alternative hypotheses:
-Null Hypothesis: Ads have no effect on purchases.
-Alternative Hypothesis: Ads increase the likelihood of purchases.
+
+- Null Hypothesis: Ads have no effect on purchases.
+
+- Alternative Hypothesis: Ads increase the likelihood of purchases.
 
 Perform statistical tests (e.g., t-tests or chi-square tests) to evaluate the results.
+
+
+```python
+## Analyze completion rates - Categorical in nature - Chi-square test
+## Generate a contingency table
+contingency_table = pd.crosstab(data['test group'], data['made_purchase'])
+
+print(contingency_table)
+
+## Perform the chi-square test
+chi2, p_value, _, _ = stats.chi2_contingency(contingency_table)
+
+print(f"Chi-square:{chi2}, P-value:{p_value}")
+```
+
+```python
+## Conclusions based on P values
+alpha = 0.05
+
+## Completion status
+if p_value < 0.05:
+   print("Reject the Null hypothesis for Ads have no effect on purchase")
+else:
+   print("Fail to reject the Null hypothesis Ads have no effect on purchase")
+```
+
 
 ## Technologies used
 
@@ -33,7 +64,10 @@ Perform statistical tests (e.g., t-tests or chi-square tests) to evaluate the re
 Bar chart to compare conversion rates between Ads and PSA
 
 ## Visualization
-Bar chart to compare conversion rates between Ads and PSA
+chart to compare conversion rates between Ads and PSA
+
+![Bar chart online](https://github.com/user-attachments/assets/570fea24-e00a-454f-85b4-151f0e5bfd04)
+
 
 ## Findings
 Ads increases purchases
